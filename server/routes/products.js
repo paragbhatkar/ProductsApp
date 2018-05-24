@@ -24,10 +24,13 @@ route.get('/', function(req,res){
     console.log(req.body);
     product.findByIdAndUpdate(req.params.id, req.body, function (err, product) {
         if (err) return next(err);
-        res.json(product);
+        res.send('Record updated.');
       });
 }).delete('/:id',function(req,res){
-    res.send('Delete remove product.'+ req.params['id']);
+    product.remove({_id: req.params.id},function(err,product){
+        if(err) res.send(err);
+        res.send('Deleted successfully - ' + product);
+    });
 });
 
 module.exports = route;

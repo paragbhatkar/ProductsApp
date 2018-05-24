@@ -4,15 +4,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 import { AboutComponent } from './about/about.component';
 import { ProductcardsComponent } from './productcards/productcards.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
-  { path: 'products', component: ProductsComponent, 
+  {
+    path: '', component: DashboardComponent,
     children: [
-    {
+      {
         path: '',
         component: ProductcardsComponent
-    }
-] },
+      }
+    ]
+  },
+  { path: 'products', component: ProductsComponent },
   { path: 'about', component: AboutComponent }
 ];
 
@@ -21,7 +25,7 @@ const appRoutes: Routes = [
     CommonModule,
     RouterModule.forRoot(appRoutes)
   ],
-  exports: [ RouterModule ],
+  exports: [RouterModule],
   declarations: []
 })
 export class AppRoutingModule { }
